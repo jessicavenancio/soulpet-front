@@ -4,6 +4,7 @@ import { Home } from "./pages/Home/Home";
 import { NovoCliente } from "./pages/NovoCliente/NovoCliente";
 import { Clientes } from "./pages/Clientes/Clientes";
 import { EditaCliente } from "./pages/EditaCliente/EditaCliente";
+import { NovoPets } from "./pages/NovoPets/NovoPets";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/clientes" element={<Clientes />} />
           <Route path="/clientes/novo" element={<NovoCliente />} />
           <Route path="/clientes/editar/:id" element={<EditaCliente />} />
+          <Route path="/pets/novo" element={<NovoPets />} />
         </Route>
       </Routes>
     </BrowserRouter>
