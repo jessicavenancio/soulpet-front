@@ -10,7 +10,7 @@ export function Clientes() {
     const [clientes, setClientes] = useState(null);
     const [show, setShow] = useState(false);
     const [idCliente, setIdCliente] = useState(null);
-  
+
     const handleClose = () => {
         setIdCliente(null);
         setShow(false)
