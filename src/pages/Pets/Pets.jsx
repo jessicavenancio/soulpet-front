@@ -34,6 +34,19 @@ export function Pets() {
             });
     }
 
+    function onDelete() {
+        axios.delete(`http://localhost:3001/pets/${idPets}`)
+            .then(response => {
+                toast.success(response.data.message, { position: "bottom-right", duration: 2000 });
+                initializeTable();
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error(error.response.data.message, { position: "bottom-right", duration: 2000 });
+            });
+        handleClose();
+    }
+
     return (
         <div className="pets container">
             <div className="d-flex justify-content-between align-items-center">
