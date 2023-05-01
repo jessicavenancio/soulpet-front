@@ -61,6 +61,18 @@ export function Pedidos() {
             })
     }
     
+    function onDelete() {
+        axios.delete(`http://localhost:3001/pedidos/${idpedido}`)
+            .then(response => {
+                toast.success(response.data.message, { position: "bottom-right", duration: 2000 });
+                initializeTable();
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error(error.response.data.message, { position: "bottom-right", duration: 2000 });
+            });
+        handleClose();
+    }
 
     return (
         <div className="pedidos container">
@@ -129,6 +141,20 @@ export function Pedidos() {
                         </tbody>
                     </Table>
             }
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmação</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Tem certeza que deseja excluir o pedido?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleClose}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={onDelete}>
+                        Excluir
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }
