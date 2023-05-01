@@ -51,9 +51,15 @@ export function Clientes() {
         <div className="clientes container">
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Clientes</h1>
-                <Button as={Link} to="/clientes/novo">
-                    <i className="bi bi-plus-lg me-2"></i> Cliente
+                <div>
+                <Button as={Link} to="/clientes/novo" className="m-2">
+                    <i className="bi bi-plus-lg"></i> Cliente
                 </Button>
+
+                <Button onClick={() => window.open('http://localhost:3001/relatorio')}>
+                <i class="bi bi-filetype-pdf"></i> Relatório
+                </Button>
+                </div>
             </div>
             {
                 clientes === null ?
