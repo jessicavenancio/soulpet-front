@@ -82,6 +82,7 @@ export function Pedidos() {
                     Novo pedido
                 </Button>
             </div>
+            <div className="mb-3">
             <Row>
                 <Col>
                     <Form.Select onChange={(event) => { setFiltroCliente(event.target.value) }} aria-label="Default select example">
@@ -103,6 +104,7 @@ export function Pedidos() {
                 <Button onClick={() => resetFiltros()}>Reiniciar filtros</Button>
                 </Col>
             </Row>
+            </div>
             {
                 pedidos === null ?
                     <Loader />
