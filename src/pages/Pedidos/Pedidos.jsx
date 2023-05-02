@@ -156,5 +156,4 @@ export function Pedidos() {
                 </Modal.Footer>
             </Modal>
         </div>
-    );
-}
+    )}
