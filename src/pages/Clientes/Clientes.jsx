@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
 
-export function Clientes() {
+export function Clientes() { 
 
     const [clientes, setClientes] = useState(null);
     const [show, setShow] = useState(false);

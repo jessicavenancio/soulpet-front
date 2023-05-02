@@ -14,6 +14,8 @@ export function Pedidos() {
     const [produtos, setProdutos] = useState([]);
     const [filtroCliente, setFiltroCliente] = useState('');
     const [filtroProduto, setFiltroProduto] = useState('');
+    const [showPedidos, setShowPedidos] = useState(false);
+    const [selecionaPedidos, setSelecionaPedidos] = useState(null);
 
     const handleClose = () => {
         setIdpedido(null);
@@ -27,8 +29,37 @@ export function Pedidos() {
     const resetFiltros = () => {
         setFiltroCliente('');
         setFiltroProduto('');
-
     };
+
+
+    const handlePedidos = (id) => {
+        setSelecionaPedidos(null);
+        setShowPedidos(false)
+    };
+
+    const buscarPedido = (codigo) => {
+        return axios
+            .get(`http://localhost:3001/pedidos/${codigo}`)
+            .then((response) => {
+                console.log(response.data);
+                return response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error(error.response.data.message, {
+                    position: "bottom-right",
+                    duration: 2000,
+                });
+            });
+    }
+
+    const handleShowPedido = (id) => {
+        buscarPedido(id).then((pedido) => {
+            setSelecionaPedidos(pedido);
+            setShowPedidos(true);
+        });
+    };
+
 
     useEffect(() => {
         axios.get("http://localhost:3001/clientes")
@@ -82,7 +113,7 @@ export function Pedidos() {
                     Novo pedido
                 </Button>
             </div>
-            <div className="mb-3">
+            <div className="m-3">
             <Row>
                 <Col>
                     <Form.Select onChange={(event) => { setFiltroCliente(event.target.value) }} aria-label="Default select example">
@@ -136,6 +167,9 @@ export function Pedidos() {
                                             <Button as={Link} to={`/pedidos/editar/${pedido.codigo}`}>
                                                 <i className="bi bi-pencil-fill"></i>
                                             </Button>
+                                            <Button onClick={() => handleShowPedido(pedido.codigo)}>
+                                                <i class="bi bi-info-circle"></i>
+                                            </Button>
                                         </td>
                                     </tr>
                                 )
@@ -157,5 +191,40 @@ export function Pedidos() {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+            <Modal show={showPedidos} onHide={handlePedidos}>
+                <Modal.Body>
+                    <Modal.Title>Informações do Pedido</Modal.Title>
+                    {selecionaPedidos && (
+                        <>
+                            <div>
+                                <hr></hr>
+                                <p>
+                                    <b>Código: {selecionaPedidos.codigo}</b> <br />
+                                    Quantidade: {selecionaPedidos.quantidade} <br />
+                                </p>
+                                <hr></hr>
+                                <p>
+                                    <b>Cliente: </b> <br />
+                                    Nome: {selecionaPedidos.cliente.nome} <br />
+                                    Telefone: {selecionaPedidos.cliente.telefone} <br />
+                                </p>
+                                <hr></hr>
+                                <p>
+                                    <b>Produtos: </b> <br />
+                                    Nome: {selecionaPedidos.produto.nome} <br />
+                                    Descrição: {selecionaPedidos.produto.descricao} <br />
+                                </p>
+                            </div>
+                        </>
+                    )}
+                    <div className="d-flex justify-content-end">
+                        <Button variant="warning" onClick={handlePedidos} >
+                            Fechar
+                        </Button>
+                    </div>
+                </Modal.Body>
+            </Modal>
+
         </div>
     )}
