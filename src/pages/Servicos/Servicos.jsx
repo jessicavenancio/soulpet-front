@@ -35,7 +35,7 @@ export function Servicos() {
                 console.log(error);
             });
     }
-
+    // FE-12
     function deleteServico(id) {
         axios
             .delete(`http://localhost:3001/servicos/${id}`)
