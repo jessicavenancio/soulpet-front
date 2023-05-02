@@ -12,12 +12,8 @@ export function NovoPedido() {
     const [produtos, setProdutos] = useState([]); 
     const [clientes, setClientes] = useState([]);
     const navigate = useNavigate();
-    const { fields: fields1, append: append1, remove: remove1 } = useFieldArray({
-        control,
-        name: 'clientes',
-      });
     
-      const { fields: fields2, append: append2, remove: remove2 } = useFieldArray({
+      const { fields, append, remove } = useFieldArray({
         control,
         name: 'produtos',
       });
@@ -78,31 +74,6 @@ export function NovoPedido() {
                     </Form.Select>
                     {errors.clienteId && <Form.Text className="invalid-feedback">{errors.clienteId.message}</Form.Text>}
                 </Form.Group>
-
-                <Form onSubmit={handleSubmit((data) => console.log(data))}>
-                    {fields1.map((field, index) => (
-                        <Form.Group className="mb-3" clienteId={`items[${index}].name`}>
-                        <Form.Label>Clientes</Form.Label>
-                        <Form.Select {...register(`items.${index}.name`)} defaultValue="">
-                            <option value="">Escolha um cliente...</option>
-                            {clientes.map(cliente => (
-                            <option value={cliente.id}>
-                                {cliente.nome}
-                            </option>
-                            ))}
-                        </Form.Select> 
-                        <br></br>           
-                        <Button variant="danger" onClick={() => remove1(index)}>
-                            Remover
-                        </Button>                             
-                        </Form.Group>
-                    ))}
-                    <div className="mb-3">
-                    <Button variant="primary" onClick={() => append1({ name: '' })}>
-                        Adicionar novo cliente
-                    </Button>
-                    </div>
-                    </Form>
                 
                 <Form.Group className="mb-3">
                     <Form.Label>Produtos</Form.Label>
@@ -117,7 +88,7 @@ export function NovoPedido() {
                 </Form.Group>
                 
                 <Form onSubmit={handleSubmit((data) => console.log(data))}>
-                    {fields2.map((field, index) => (
+                    {fields.map((field, index) => (
                         <Form.Group className="mb-3" produtoId={`items[${index}].name`}>
                         <Form.Label>Produtos</Form.Label>
                         <Form.Select {...register(`items.${index}.name`)} defaultValue="">
@@ -129,13 +100,13 @@ export function NovoPedido() {
                             ))}
                         </Form.Select>
                         <br></br>       
-                        <Button variant="danger" onClick={() => remove2(index)}>
+                        <Button variant="danger" onClick={() => remove(index)}>
                             Remover
                         </Button>                    
                         </Form.Group>
                     ))}
                     <div className="mb-3">
-                    <Button variant="primary" onClick={() => append2({ name: '' })}>
+                    <Button variant="primary" onClick={() => append({ name: '' })}>
                         Adicionar novo produto
                     </Button>
                     </div>
