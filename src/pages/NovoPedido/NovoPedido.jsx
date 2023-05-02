@@ -16,7 +16,7 @@ export function NovoPedido() {
     useEffect(() => {
         axios.get("http://localhost:3001/produtos")
         .then(response => {
-            setProdutos(response.data.listaProdutos);
+            setProdutos(response.data);
         })
         .catch(error => {
             console.log(error);
