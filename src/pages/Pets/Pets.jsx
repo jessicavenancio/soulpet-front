@@ -56,9 +56,6 @@ export function Pets() {
                     <i className="bi bi-plus-lg"></i> Pets
                 </Button>
 
-                <Button onClick={() => window.open('http://localhost:3001/relatorio')}>
-                <i class="bi bi-filetype-pdf"></i> Relatório
-                </Button>
                 </div>
             </div>
             {
