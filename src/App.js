@@ -13,6 +13,10 @@ import { Pets } from "./pages/Pets/Pets";
 import { EditarPet } from "./pages/Pets/EditarPet";
 import { Pedidos } from "./pages/Pedidos/Pedidos";
 import { NovoAgendamento } from "./pages/Agendamentos/NovoAgendamento";
+import { NovoServico } from "./pages/NovoServico/NovoServico";
+import { Servicos } from "./pages/Servicos/Servicos";
+import { EditaServico } from "./pages/EditaServico/EditaServico";
+
 
 function App() {
   return (
@@ -35,9 +39,13 @@ function App() {
           <Route path="/produtos" element={<Produtos />} />
           <Route path="/produtos/novo" element={<AddProduto />} />
           <Route path="/produtos/editar/:id" element={<EditarProd />} />
-
+          
           
           <Route path="/agendamentos/novo" element={<NovoAgendamento />} />
+
+          <Route path="/servicos/novo" element={<NovoServico />} />
+          <Route path = "/servicos" element= { <Servicos />} />
+          <Route path="/servicos/editar/:id" element={< EditaServico />} />
         </Route>
       </Routes>
     </BrowserRouter>
