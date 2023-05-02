@@ -4,11 +4,12 @@ import { Home } from "./pages/Home/Home";
 import { NovoCliente } from "./pages/NovoCliente/NovoCliente";
 import { Clientes } from "./pages/Clientes/Clientes";
 import { EditaCliente } from "./pages/EditaCliente/EditaCliente";
-import { NovoPets } from "./pages/NovoPets/NovoPets";
+import { NovoPets } from "./pages/Pets/NovoPets";
 import { AddProduto } from "./pages/Produtos/AddProd";
 import { NovoPedido } from "./pages/NovoPedido/NovoPedido";
 import { Produtos } from "./pages/Produtos/Produtos";
 import { EditarProd } from "./pages/Produtos/EditarProd";
+import { Pets } from "./pages/Pets/Pets";
 import { Pedidos } from "./pages/Pedidos/Pedidos";
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
           <Route path="/clientes" element={<Clientes />} />
           <Route path="/clientes/novo" element={<NovoCliente />} />
           <Route path="/clientes/editar/:id" element={<EditaCliente />} />
+          
+          
+          <Route path="/pets" element={<Pets />} />
           <Route path="/pets/novo" element={<NovoPets />} />
           <Route path="/pedidos/" element={<Pedidos />} />
           <Route path="/produtos/novo" element={<AddProduto />} />
