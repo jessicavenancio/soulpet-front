@@ -3,10 +3,34 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect} from "react";
+import "../Produtos/AddProd.css"
 
-export function NovoAgendamento (){
+export function NovoAgendamento() {
+
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [servicos, setServicos] = useState([]); 
+    const [pets, setPets] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get("http://localhost:3001/servicos")
+        .then(response => {
+            setServicos(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        axios.get("http://localhost:3001/pets")
+        .then(response => {
+            setPets(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, [])
+
     function onSubmit(data) {
         axios.post("http://localhost:3001/agendamentos", data)
             .then(response => {
@@ -18,41 +42,54 @@ export function NovoAgendamento (){
                 console.log(error);
             });
     }
+
     return (
-        <div className="container">
-            <h1>Novo Agendamento</h1>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group className="mb-3">
-                    <Form.Label> Pet</Form.Label>
-                    <Form.Control type="text" className={errors.nome && "is-invalid"} {...register("nome", { required: "O nome é obrigatório.", maxLength: { value: 130, message: "Limite de 130 caracteres."} })} />
-                    {errors.nome && <Form.Text className="invalid-feedback">{errors.nome.message}</Form.Text>}
+        <div className="container w-50 p-3">
+            <h1>Realizar agendamento</h1>
+            <Form onSubmit={handleSubmit(onSubmit)}> 
+                <Form.Group className="mb-3 ">
+                    <Form.Label>Pets</Form.Label>
+                    <Form.Select className={errors.petId && "is-invalid"}
+                        {...register("petId", {required: "Escolha um pet para o agendamento."})}>
+                            <option value=""> Selecione o pet..</option>
+                        {pets.map(pet => 
+                            <option value={pet.id}>{pet.nome}</option>
+                        )}
+                    </Form.Select>
+                    {errors.petId && <Form.Text className="invalid-feedback">{errors.petId.message}</Form.Text>}
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Serviço</Form.Label>
-                    <Form.Control type="text" className={errors.tipo && "is-invalid"} {...register("tipo", { required: "O tipo do pet é obrigatório.", maxLength: { value: 25, message: "Limite de 25 caracteres."} })} />
-                    {errors.tipo && <Form.Text className="invalid-feedback">{errors.tipo.message}</Form.Text>}
+                    <Form.Label>Serviços</Form.Label>
+                    <Form.Select className={errors.servicoId && "is-invalid"}
+                        {...register("servicoId", {required: "Escolha um serviço."})}>
+                            <option value=""> Escolha um serviço...</option>
+                        {servicos.map(servico => 
+                            <option value={servico.id}>{servico.nome}</option>
+                        )}
+                    </Form.Select>
+                    {errors.servicoId && <Form.Text className="invalid-feedback">{errors.servicoId.message}</Form.Text>}
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Data</Form.Label>
-                    <Form.Control type="text" className={errors.porte && "is-invalid"} {...register("porte", { required: "Campo obrigatório.", maxLength: { value: 25, message: "Limite de 25 caracteres."} })} />
-                    {errors.porte && <Form.Text className="invalid-feedback">{errors.porte.message}</Form.Text>}
+                    <Form.Label>Data de agendamento</Form.Label>
+                    <Form.Control type="date" className={errors.dataAgendada && "is-invalid"} {...register("dataAgendada", { required: "Campo obrigatório.", maxLength: { value: 25, message: "Limite de 25 caracteres."} })} />
+                    {errors.dataAgendada && <Form.Text className="invalid-feedback">{errors.dataAgendada.message}</Form.Text>}
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Realizado</Form.Label>
-                    <Form.Control type="date" className={errors.dataNasc && "is-invalid"} {...register("dataNasc", { required: "Campo obrigatório.", maxLength: { value: 25, message: "Limite de 25 caracteres."} })} />
-                    {errors.dataNasc && <Form.Text className="invalid-feedback">{errors.dataNasc.message}</Form.Text>}
-                </Form.Group>             
-                    
-                    
-               
-                <Button variant="primary" type="submit">
+        <Form.Label>Status do serviço</Form.Label>
+        <Form.Select className={errors.realizada && "is-invalid"}
+                        {...register("realizada", {required: "O serviço foi realizado?"})}>
+        <option value=""> O serviço foi realizado?</option>
+          <option>Sim</option>
+          <option>Não</option>  
+        </Form.Select>
+      </Form.Group>  
+                <Button variant="success" className="botao-form" type="submit">
                     Agendar
                 </Button>
             </Form>
         </div>
     );
 }
-
