@@ -16,6 +16,7 @@ import { NovoAgendamento } from "./pages/Agendamentos/NovoAgendamento";
 import { NovoServico } from "./pages/NovoServico/NovoServico";
 import { Servicos } from "./pages/Servicos/Servicos";
 import { EditaServico } from "./pages/EditaServico/EditaServico";
+import { Agendamentos } from "./pages/Agendamentos/Agendamentos";
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
           <Route path="/produtos/novo" element={<AddProduto />} />
           <Route path="/produtos/editar/:id" element={<EditarProd />} />
           
-          
+          <Route path="/agendamentos" element={<Agendamentos/>} />
           <Route path="/agendamentos/novo" element={<NovoAgendamento />} />
 
           <Route path="/servicos/novo" element={<NovoServico />} />
