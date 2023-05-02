@@ -9,9 +9,12 @@ export function Clientes() {
 
     const [clientes, setClientes] = useState(null);
     const [show, setShow] = useState(false);
+    const [showCliente, setShowCliente] = useState(false);
+    const [selecionaCliente, setSelecionaCliente] = useState(null);
     const [idCliente, setIdCliente] = useState(null);
 
-    const handleClose = () => {
+
+    const handleClose = (id) => {
         setIdCliente(null);
         setShow(false)
     };
@@ -19,6 +22,35 @@ export function Clientes() {
         setIdCliente(id);
         setShow(true)
     };
+
+    const handleCliente = (id) => {
+        setSelecionaCliente(null);
+        setShowCliente(false)
+    };
+
+    const buscarCliente = (id) => {
+        return axios
+            .get(`http://localhost:3001/clientes/${id}`)
+            .then((response) => {
+                console.log(response.data);
+                return response.data;
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error(error.response.data.message, {
+                    position: "bottom-right",
+                    duration: 2000,
+                });
+            });
+    }
+
+    const handleShowCliente = (id) => {
+        buscarCliente(id).then((cliente) => {
+            setSelecionaCliente(cliente);
+            setShowCliente(true);
+        });
+    };
+
 
     useEffect(() => {
         initializeTable();
@@ -33,6 +65,7 @@ export function Clientes() {
                 console.log(error);
             });
     }
+
 
     function onDelete() {
         axios.delete(`http://localhost:3001/clientes/${idCliente}`)
@@ -52,13 +85,13 @@ export function Clientes() {
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Clientes</h1>
                 <div>
-                <Button as={Link} to="/clientes/novo" className="m-2">
-                    <i className="bi bi-plus-lg"></i> Cliente
-                </Button>
+                    <Button as={Link} to="/clientes/novo" className="m-2">
+                        <i className="bi bi-plus-lg"></i> Cliente
+                    </Button>
 
-                <Button onClick={() => window.open('http://localhost:3001/relatorio')}>
-                <i class="bi bi-filetype-pdf"></i> Relatório
-                </Button>
+                    <Button onClick={() => window.open('http://localhost:3001/relatorio')}>
+                        <i class="bi bi-filetype-pdf"></i> Relatório
+                    </Button>
                 </div>
             </div>
             {
@@ -88,6 +121,9 @@ export function Clientes() {
                                             <Button as={Link} to={`/clientes/editar/${cliente.id}`}>
                                                 <i className="bi bi-pencil-fill"></i>
                                             </Button>
+                                            <Button onClick={() => handleShowCliente(cliente.id)}>
+                                                <i class="bi bi-info-circle"></i>
+                                            </Button>
                                         </td>
                                     </tr>
                                 )
@@ -109,6 +145,52 @@ export function Clientes() {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <Modal show={showCliente} onHide={handleCliente}>
+                <Modal.Body>
+                    <Modal.Title>Informações do Cliente</Modal.Title>
+                    {selecionaCliente && (
+                        <>
+                            <div>
+                                <hr></hr>
+                                <p>
+                                    <b>Código: {selecionaCliente.id}</b> <br />
+                                    Nome: {selecionaCliente.nome} <br />
+                                    Email: {selecionaCliente.email} <br />
+                                    Telefone: {selecionaCliente.telefone} <br />
+                                </p>
+                                <hr></hr>
+                                <p>
+                                    <b>Endeceço: </b> <br />
+                                    Rua: {selecionaCliente.endereco.rua} <br />
+                                    Nº: {selecionaCliente.endereco.numero} <br />
+                                    Cidade: {selecionaCliente.endereco.cidade} <br />
+                                    UF: {selecionaCliente.endereco.uf} <br />
+                                    CEP: {selecionaCliente.endereco.cep} <br />
+                                </p>
+                                <hr></hr>
+                                <p>
+                                    <b>Pets: </b> <br />
+                                    Quantidade de pets: {selecionaCliente.pets.length} <br />
+                                    Nome e tipo: <br />
+                                    {(() => {
+                                        const petNames = [];
+                                        selecionaCliente.pets.forEach((pet) => {
+                                            petNames.push(<p key={pet.id} className="m-0 p-0"> - {pet.nome}: {pet.tipo}</p>);
+                                        });
+                                        return petNames;
+                                    })()}
+                                </p>
+                            </div>
+                        </>
+                    )}
+                    <div className="d-flex justify-content-end">
+                        <Button variant="warning" onClick={handleCliente} >
+                            Fechar
+                        </Button>
+                    </div>
+                </Modal.Body>
+            </Modal>
+
         </div>
     );
 }
