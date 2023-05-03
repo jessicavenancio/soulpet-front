@@ -47,3 +47,4 @@ Autores desse projeto
 
 <h3>Licença</h3>
 Esta aplicação utiliza a Licença MIT, o que significa que você pode usá-la, copiá-la, modificar e distribuir o código esta aplicação, desde que seja mantida a atribuição de direitos autorais e a licença seja incluída em todas as cópias e modificações do código. Para obter mais informações sobre a Licença MIT, consulte o arquivo LICENSE.md na raiz deste repositório.
+
