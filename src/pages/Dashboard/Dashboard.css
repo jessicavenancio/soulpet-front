@@ -1,0 +1,24 @@
+.titulo{
+    margin-top: 20px;
+    text-align: center;
+    font-family: Georgia, serif;
+    color: #6f370f;    
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: darkgrey;
+  }
+
+  .card {
+    width: 150px;
+    height: 120px;
+  }
+
+  .row{
+    margin-top: 125px;
+  }

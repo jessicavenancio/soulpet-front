@@ -17,6 +17,7 @@ import { NovoServico } from "./pages/NovoServico/NovoServico";
 import { Servicos } from "./pages/Servicos/Servicos";
 import { EditaServico } from "./pages/EditaServico/EditaServico";
 import { Agendamentos } from "./pages/Agendamentos/Agendamentos";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
 
 
 function App() {
@@ -24,12 +25,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Root />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />          
+          <Route path="/dashboard" element={<Dashboard/>}/>
+
           <Route path="/clientes" element={<Clientes />} />
           <Route path="/clientes/novo" element={<NovoCliente />} />
           <Route path="/clientes/editar/:id" element={<EditaCliente />} />
-          
-          
+
           <Route path="/pets" element={<Pets />} />
           <Route path="/pets/novo" element={<NovoPets />} />
           <Route path="/pets/editar/:id" element={<EditarPet />} />
@@ -40,10 +42,10 @@ function App() {
           <Route path="/produtos" element={<Produtos />} />
           <Route path="/produtos/novo" element={<AddProduto />} />
           <Route path="/produtos/editar/:id" element={<EditarProd />} />
-          
+
           <Route path="/agendamentos" element={<Agendamentos/>} />
           <Route path="/agendamentos/novo" element={<NovoAgendamento />} />
-
+          
           <Route path="/servicos/novo" element={<NovoServico />} />
           <Route path = "/servicos" element= { <Servicos />} />
           <Route path="/servicos/editar/:id" element={< EditaServico />} />
