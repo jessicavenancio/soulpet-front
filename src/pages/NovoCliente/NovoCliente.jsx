@@ -3,11 +3,15 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export function NovoCliente() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const [cidades, setCidades] = useState([]);
+    const [ufSelecionada, setUfSelecionada] = useState([]);
+    const [estados, setEstados] = useState([]);
 
     function onSubmit(data) {
         axios.post("http://localhost:3001/clientes", data)
@@ -20,6 +24,27 @@ export function NovoCliente() {
                 console.log(error);
             });
     }
+
+    useEffect(() => {
+        if (ufSelecionada === null) {
+            return;
+        }
+        axios
+            .get(
+                `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufSelecionada}/municipios`
+            )
+            .then((response) => {
+                setCidades(response.data);
+            });
+    }, [ufSelecionada]);
+
+    useEffect(() => {
+        axios
+            .get("https://servicodados.ibge.gov.br/api/v1/localidades/estados/")
+            .then((response) => {
+                setEstados(response.data);
+            });
+    }, []);
 
     return (
         <div className="container">
@@ -44,27 +69,50 @@ export function NovoCliente() {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Cidade</Form.Label>
-                    <Form.Control type="text" className={errors.endereco?.cidade && "is-invalid"} {...register("endereco.cidade", { required: "A cidade é obrigatória.", maxLength: { value: 255, message: "Limite de 255 caracteres."} })} />
-                    {errors.endereco?.cidade && <Form.Text className="invalid-feedback">{errors.endereco?.cidade.message}</Form.Text>}
+                    <Form.Label> UF </Form.Label><br />
+                    <Form.Select
+                        id="uf"
+                        className={errors.endereco?.uf && "is-invalid"}
+                        {...register("endereco.uf", { required: "O estado é obrigatório." })}
+                        onChange={(event) => setUfSelecionada(event.target.value)}
+                    >
+                        <option value="" > Selecione uma UF </option>
+                        {estados.map((uf) => (
+                            <option key={uf.sigla} value={uf.sigla}>
+                                {uf.sigla}
+                            </option>
+                        ))}
+                    </Form.Select >
+                    <Form.Text className="invalid-feedback">{errors.endereco?.uf.message}</Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>UF</Form.Label>
-                    <Form.Control type="text" className={errors.endereco?.uf && "is-invalid"} {...register("endereco.uf", { required: "O UF é obrigatório.", maxLength: { value: 2, message: "Limite de 2 caracteres."} })} />
-                    {errors.endereco?.uf && <Form.Text className="invalid-feedback">{errors.endereco?.uf.message}</Form.Text>}
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                    <Form.Label>CEP</Form.Label>
-                    <Form.Control type="text" className={errors.endereco?.cep && "is-invalid"} {...register("endereco.cep", { required: "O CEP é obrigatório.", maxLength: { value: 9, message: "Limite de 9 caracteres."} })} />
-                    {errors.endereco?.cep && <Form.Text className="invalid-feedback">{errors.endereco?.cep.message}</Form.Text>}
+                <Form.Label> Cidade </Form.Label><br />
+                    <Form.Select
+                        id="cidade"
+                        className={errors.endereco?.cidade && "is-invalid"}
+                        {...register("endereco.cidade", { required: "A cidade é obrigatória." })}
+                    >
+                        <option value="">Selecione uma cidade</option>
+                        {cidades.map((cidade) => (
+                            <option key={cidade.id} value={cidade.nome}>
+                                {cidade.nome}
+                            </option>
+                        ))}
+                    </Form.Select>
+                    <Form.Text className="invalid-feedback">{errors.endereco?.cidade.message}</Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Rua</Form.Label>
                     <Form.Control type="text" className={errors.endereco?.rua && "is-invalid"} {...register("endereco.rua", { required: "A rua é obrigatória.", maxLength: { value: 255, message: "Limite de 255 caracteres."} })} />
                     {errors.endereco?.rua && <Form.Text className="invalid-feedback">{errors.endereco?.rua.message}</Form.Text>}
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>CEP</Form.Label>
+                    <Form.Control type="text" className={errors.endereco?.cep && "is-invalid"} {...register("endereco.cep", { required: "O CEP é obrigatório.", maxLength: { value: 9, message: "Limite de 9 caracteres."} })} />
+                    {errors.endereco?.cep && <Form.Text className="invalid-feedback">{errors.endereco?.cep.message}</Form.Text>}
                 </Form.Group>
 
                 <Form.Group className="mb-3">
