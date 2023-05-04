@@ -92,7 +92,8 @@ export function Agendamentos() {
         <h1>Agendamentos</h1>
         <div>
           <Button as={Link} to="/agendamentos/novo" variant="primary" className="m-2">
-            Novo agendamento
+            <i className="bi bi-plus-lg me-2"></i>
+            Agendamento
           </Button>
           <Button
             onClick={() => handleShowAll(agendamentos)}
