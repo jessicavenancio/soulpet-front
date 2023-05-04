@@ -82,42 +82,23 @@ export function Agendamentos() {
     handleClose();
   }
 
-  // return (
-  //   <div className="agendamentos container">
-  //     <div className="d-flex justify-content-around align-items-center mb-5 mt-5">
-  //       <h1>Agendamentos</h1>
-  //       <Button as={Link} to="/agendamentos/novo" variant="primary">
-  //         Novo agendamento
-  //       </Button>
-  //       <Button
-  //         onClick={() => handleShowAll(agendamentos)}
-  //         variant="primary"
-  //       > Excluir todos agendamentos</Button>
-  //     </div>
-  //     {agendamentos === null ? (
-  //       <Loader />
-  //     ) : (
-  //       <Table striped hover>
-  //         <thead>
-  //           <tr>
-  //             <th>Data do agendamento</th>
-  //             <th>Status de realização</th>
-  //             <th>Ações</th>
-
   return (
     <div className="agendamentos container">
       <div className="container-img">
         <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
       </div>
+
       <div className="d-flex justify-content-between align-items-center m-0 p-0">
         <h1>Agendamentos</h1>
-        <Button as={Link} to="/agendamentos/novo" variant="primary">
-          Novo agendamento
-        </Button>
-        <Button
-          onClick={() => handleShowAll(agendamentos)}
-          variant="primary"
-        > Excluir todos agendamentos</Button>
+        <div>
+          <Button as={Link} to="/agendamentos/novo" variant="primary" className="m-2">
+            Novo agendamento
+          </Button>
+          <Button
+            onClick={() => handleShowAll(agendamentos)}
+            variant="primary"
+          > Excluir todos agendamentos</Button>
+        </div>
       </div>
       <hr />
       {agendamentos === null ? (
@@ -149,41 +130,41 @@ export function Agendamentos() {
               )
             })}
           </tbody>
-        </Table>  
-  )}
+        </Table>
+      )}
 
-<Modal show={showDeleteModal} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirmação</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Quer mesmo excluir este agendamento?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={onDelete}>
-                        Excluir
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+      <Modal show={showDeleteModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmação</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Quer mesmo excluir este agendamento?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="warning" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={onDelete}>
+            Excluir
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-            <Modal show={showDeleteAllModal} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirmação</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Tem certeza que deseja excluir todos os agendamentos?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Cancelar
-                    </Button>
-                    <Button variant="warning" onClick={onDeleteAll}>
-                        Excluir
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
-    );
+      <Modal show={showDeleteAllModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmação</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tem certeza que deseja excluir todos os agendamentos?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button variant="warning" onClick={onDeleteAll}>
+            Excluir
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 }
 
