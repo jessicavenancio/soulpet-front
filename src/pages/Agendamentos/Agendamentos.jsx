@@ -113,7 +113,7 @@ export function Agendamentos() {
                     <Button onClick={handleShow.bind(this, agendamento.id)}>
                       <i className="bi bi-trash-fill"></i>
                     </Button>
-                    <Button>
+                    <Button as={Link} to={`/agendamentos/editar/${agendamento.id}`}>
                       <i className="bi bi-pencil-fill"></i>
                     </Button>
                   </td>
