@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
