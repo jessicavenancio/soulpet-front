@@ -1,4 +1,5 @@
-import { Form, Button, InputGroup } from "react-bootstrap";
+import Img from "../../assets/soul-pet-logo.svg";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -34,42 +35,49 @@ export function EditaServico() {
 
     return (
         <div className="container">
-            <h1>Editar Serviço</h1>
-            <Form onSubmit={handleSubmit(onSubmit)} >
-                <Form.Group className="mb-3">
-                    <Form.Label>Nome:</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Digite o nome do serviço"
-                        className={errors.nome && "is-invalid"}
-                        {...register("nome", { required: "O nome do serviço é obrigatório.", maxLength: { value: 131, message: "Limite de 131 caracteres." }, minLength: { value: 3, message: "É preciso digitar 3 caracteres ou mais." } })} />
-                    {errors.nome && <Form.Text className="invalid-feedback">{errors.nome.message}</Form.Text>}
-                </Form.Group>
+            <Row>
+                <Col xs={5} className="mt-30">
+                    <img className="img-form col-md-10 " src={Img} alt="LOGO" />
+                </Col>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Preço:</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Text>R$</InputGroup.Text>
-                        <Form.Control
-                            placeholder="Digite o valor do serviço."
-                            type="text"
-                            className={errors.preco && "is-invalid"}
-                            {...register("preco", {
-                                required: "O preço é obrigatório.",
-                            })} />
-                        {errors.preco && <Form.Text className="invalid-feedback">{errors.preco.message}</Form.Text>}
-                    </InputGroup>
-                </Form.Group>
+                <Col>
+                    <h1>Editar Serviço</h1>
+                    <Form onSubmit={handleSubmit(onSubmit)} >
+                        <Form.Group className="mb-3">
+                            <Form.Label>Nome:</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Digite o nome do serviço"
+                                className={errors.nome && "is-invalid"}
+                                {...register("nome", { required: "O nome do serviço é obrigatório.", maxLength: { value: 131, message: "Limite de 131 caracteres." }, minLength: { value: 3, message: "É preciso digitar 3 caracteres ou mais." } })} />
+                            {errors.nome && <Form.Text className="invalid-feedback">{errors.nome.message}</Form.Text>}
+                        </Form.Group>
 
-                <div className="d-flex justify-content">
-                    <Button className="m-2" variant="primary" type="Submit">
-                        Editar
-                    </Button>
-                    <Button className="m-2" variant="danger" type="Reset">
-                        Limpar
-                    </Button>
-                </div>
-            </Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Preço:</Form.Label>
+                            <InputGroup>
+                                <InputGroup.Text>R$</InputGroup.Text>
+                                <Form.Control
+                                    placeholder="Digite o valor do serviço."
+                                    type="text"
+                                    className={errors.preco && "is-invalid"}
+                                    {...register("preco", {
+                                        required: "O preço é obrigatório.",
+                                    })} />
+                                {errors.preco && <Form.Text className="invalid-feedback">{errors.preco.message}</Form.Text>}
+                            </InputGroup>
+                        </Form.Group>
+
+                        <div className="d-flex justify-content-end">
+                            <Button variant="primary" type="submit" className="ml-auto">
+                                Editar
+                            </Button>
+                        </div>
+
+                    </Form>
+                </Col>
+            </Row>
+
         </div>
     )
 }

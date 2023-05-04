@@ -4,6 +4,7 @@ import { Button, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
+import Img from "../../assets/soul-pet-logo.svg";
 
 export function Pets() {
 
@@ -49,15 +50,20 @@ export function Pets() {
 
     return (
         <div className="pets container">
+            <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
+
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Pets</h1>
                 <div>
-                <Button as={Link} to="/pets/novo" className="m-2">
-                    <i className="bi bi-plus-lg"></i> Pets
-                </Button>
+                    <Button as={Link} to="/pets/novo" className="m-2">
+                        <i className="bi bi-plus-lg"></i> Pets
+                    </Button>
 
                 </div>
             </div>
+            <hr/>
             {
                 pets === null ?
                     <Loader />
@@ -100,7 +106,7 @@ export function Pets() {
                 </Modal.Header>
                 <Modal.Body>Tem certeza que deseja excluir o pet?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleClose}>
                         Cancelar
                     </Button>
                     <Button variant="primary" onClick={onDelete}>

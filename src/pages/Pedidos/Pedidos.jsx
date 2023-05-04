@@ -4,6 +4,7 @@ import { Button, Modal, Table, Form, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
+import Img from "../../assets/soul-pet-logo.svg";
 
 export function Pedidos() {
 
@@ -106,35 +107,43 @@ export function Pedidos() {
     }
 
     return (
-        <div className="pedidos container">
-            <div className="d-flex justify-content-between align-items-center">
+        <div className="container">
+            <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
+            <div className="d-flex justify-content-between align-items-center m-0 p-0">
                 <h1>Pedidos</h1>
                 <Button as={Link} to="/pedidos/novo">
-                    Novo pedido
+                    <i className="bi bi-plus-lg me-2"></i> Pedido
                 </Button>
-            </div>
-            <div className="m-3">
+            </div> 
+            <hr/>
+            <div className="mb-3">
             <Row>
                 <Col>
                     <Form.Select onChange={(event) => { setFiltroCliente(event.target.value) }} aria-label="Default select example">
-                        <option value="">Digite o nome do cliente</option>
+                        <option value="">Selecione o nome do cliente</option>
                         {clientes.map(cliente =>
                         <option value={cliente.nome}>{cliente.nome}</option>
                         )}
-                    </Form.Select>
+                    </Form.Select> 
                 </Col>
                 <Col>
-                    <Form.Select onChange={(event) => { setFiltroProduto(event.target.value) }} aria-label="Default select example">
-                        <option value="">Digite o nome do produto</option>
+                    <Form.Select className="" onChange={(event) => { setFiltroProduto(event.target.value) }} aria-label="Default select example">
+                        <option value="">Selecione o nome do produto</option>
                         {produtos.map(produto =>
                         <option value={produto.nome}>{produto.nome}</option>
                         )}
                     </Form.Select>
                 </Col>
+                
                 <Col>
-                <Button onClick={() => resetFiltros()}>Reiniciar filtros</Button>
+                <div className="d-flex justify-content-end">
+                <Button onClick={() => resetFiltros()} className="ml-auto">Reiniciar filtros</Button>
+                </div>
                 </Col>
-            </Row>
+                        
+                </Row>               
             </div>
             {
                 pedidos === null ?

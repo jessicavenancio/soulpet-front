@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { Button, Table, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import Img from "../../assets/soul-pet-logo.svg";
 import { toast } from "react-hot-toast";
+
 
 export function Agendamentos() {
   const [agendamentos, setAgendamentos] = useState(null);
@@ -101,42 +103,54 @@ export function Agendamentos() {
               <th>Data do agendamento</th>
               <th>Status de realização</th>
               <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {agendamentos.map((agendamento) => {
-              return (
-                <tr key={agendamento.id}>
-                  <td>{agendamento.dataAgendada}</td>
-                  <td>{agendamento.realizada}</td>
-                  <td className="d-flex gap-2">
-                    <Button onClick={handleShow.bind(this, agendamento.id)}>
-                      <i className="bi bi-trash-fill"></i>
-                    </Button>
-                    <Button as={Link} to={`/agendamentos/editar/${agendamento.id}`}>
-                      <i className="bi bi-pencil-fill"></i>
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      )}
-      <Modal show={showDeleteModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmação</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Quer mesmo excluir este agendamento?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant="primary" onClick={onDelete}>
-            Excluir
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
+    return (
+        <div className="agendamentos container">
+            <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
+            <div className="d-flex justify-content-between align-items-center m-0 p-0">
+                <h1>Agendamentos</h1>                
+                    <Button as={Link} to="/agendamentos/novo" variant="primary">
+                        Novo agendamento
+                    </Button>            
+            </div>
+            <hr/>
+            {
+                agendamentos === null ?
+                    <Loader/>
+                    :
+                    <Table striped hover >
+                        <thead>
+                            <tr>
+                                <th>Data do agendamento</th>
+                                <th>Status de realização</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {agendamentos.map(agendamento => {
+                                return (
+                                    <tr key={agendamento.id}>
+                                        <td>{agendamento.dataAgendada}</td>
+                                        <td>{agendamento.realizada}</td>
+                                        <td className="d-flex gap-2">
+                                            <Button >
+                                                <i className="bi bi-pencil-fill"></i>
+                                            </Button>
+                                            <Button  >
+                                                <i className="bi bi-trash-fill"></i>
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+            }
+        </div>
+    );
+}
 
       <Modal show={showDeleteAllModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -149,7 +163,7 @@ export function Agendamentos() {
           <Button variant="primary" onClick={handleClose}>
             Cancelar
           </Button>
-          <Button variant="danger" onClick={onDeleteAll}>
+          <Button variant="warning" onClick={onDeleteAll}>
             Excluir
           </Button>
         </Modal.Footer>
@@ -157,3 +171,4 @@ export function Agendamentos() {
     </div>
   );
 }
+

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Table, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import Img from "../../assets/soul-pet-logo.svg";
 
 
 export function Servicos() {
@@ -54,13 +55,17 @@ export function Servicos() {
 
     return (
         <div className="servicos container">
+            <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
 
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Serviços</h1>
                 <Button as={Link} to="/servicos/novo">
-                    <i className="bi bi-plus-lg me-2"></i>Adicionar novo serviço
+                    <i className="bi bi-plus-lg me-2"></i>Serviço
                 </Button>
             </div>
+            <hr/>
             <div className="input-group mb-3">
                 <input
                     className="form-control"

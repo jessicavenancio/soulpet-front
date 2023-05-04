@@ -4,8 +4,9 @@ import { Button, Modal, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
+import Img from "../../assets/soul-pet-logo.svg";
 
-export function Clientes() { 
+export function Clientes() {
 
     const [clientes, setClientes] = useState(null);
     const [show, setShow] = useState(false);
@@ -82,9 +83,13 @@ export function Clientes() {
 
     return (
         <div className="clientes container">
+            <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
+
             <div className="d-flex justify-content-between align-items-center">
-                <h1>Clientes</h1>
-                <div>
+                <h1>Clientes</h1> 
+                <div> 
                     <Button as={Link} to="/clientes/novo" className="m-2">
                         <i className="bi bi-plus-lg"></i> Cliente
                     </Button>
@@ -94,6 +99,7 @@ export function Clientes() {
                     </Button>
                 </div>
             </div>
+            <hr/>
             {
                 clientes === null ?
                     <Loader />

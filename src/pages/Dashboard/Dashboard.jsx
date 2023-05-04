@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
 import "./Dashboard.css"
+import Img from "../../assets/soul-pet-logo.svg";
+
 
 export function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null);
@@ -20,13 +22,17 @@ export function Dashboard() {
 
   return (
     <Container>
-      <h1 className="titulo">Análise de controle</h1> <hr/>
-      <Row className="row">
+      <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
+      <h1 className="titulo">Análise de controle</h1><hr/>
+      <div className="d-flex justify-content-around">
+      <Row>
         <Col>
           <Card className="card">
             <Card.Body className="body">
               <Card.Title>Clientes cadastrados</Card.Title>
-              <Card.Text>{dashboardData?.totalCliente}</Card.Text>
+              <Card.Title>{dashboardData?.totalCliente}</Card.Title>
             </Card.Body>
           </Card>
         </Col>
@@ -34,7 +40,7 @@ export function Dashboard() {
           <Card className="card">
             <Card.Body className="body">
               <Card.Title>Pets cadastrados</Card.Title>
-              <Card.Text>{dashboardData?.totalPet}</Card.Text>
+              <Card.Title>{dashboardData?.totalPet}</Card.Title>
             </Card.Body>
           </Card>
         </Col>
@@ -42,7 +48,7 @@ export function Dashboard() {
           <Card className="card">
             <Card.Body className="body">
               <Card.Title>Produtos cadastrados</Card.Title>
-              <Card.Text>{dashboardData?.totalProduto}</Card.Text>
+              <Card.Title>{dashboardData?.totalProduto}</Card.Title>
             </Card.Body>
           </Card>
         </Col>
@@ -50,7 +56,7 @@ export function Dashboard() {
           <Card className="card">
             <Card.Body className="body">
               <Card.Title>Serviços cadastrados</Card.Title>
-              <Card.Text>{dashboardData?.totalServico}</Card.Text>
+              <Card.Title>{dashboardData?.totalServico}</Card.Title>
             </Card.Body>
           </Card>
         </Col>
@@ -58,11 +64,12 @@ export function Dashboard() {
           <Card className="card">
             <Card.Body className="body">
               <Card.Title>Agendamentos realizados</Card.Title>
-              <Card.Text>{dashboardData?.totalAgendamento}</Card.Text>
+              <Card.Title>{dashboardData?.totalAgendamento}</Card.Title>
             </Card.Body>
           </Card>
         </Col>
       </Row> 
+      </div>
     </Container> 
   );
 }
