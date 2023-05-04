@@ -19,27 +19,27 @@ O programa Soul Pet foi desenvolvido utilizando as seguintes tecnologias:
 |---|---|---|---|---|
 |![](https://img.shields.io/badge/-MySQL-black?logo=mysql&style=plastic)|![](https://img.shields.io/badge/-Postman-black?logo=postman&style=plastic)|![](https://img.shields.io/badge/-Git-black?logo=git&style=plastic)|![](https://img.shields.io/badge/-Bootstrap-black?logo=bootstrap&style=plastic)|![](https://img.shields.io/badge/-Css-black?logo=css3&style=plastic)
 
-<h3>Instalação</h3>
+<h3>Instalação</h3> <br />
 1. Clone este repositório: `git clone https://github.com/jessicavenancio/soulpet-front.git ` <br />
 2. Instale as dependências: `npm install`
 
-<h3>Como executar</h3>
+<h3>Como executar</h3> <br />
 1. Inicie o servidor: `npm start` <br />
 2. Acesse a página em seu navegador em: `http://localhost:3000`
 
 
-<h3>Contribuições</h3>
+<h3>Contribuições</h3> <br />
 Contribuições para o programa Petshop são bem-vindas! Para contribuir, basta criar um fork deste repositório, fazer as modificações desejadas e enviar um pull request.
-Siga esse passos:
-1. Faça um fork deste repositório.
-2. Crie uma nova branch: `git checkout -b nome-da-sua-branch`
-3. Faça as alterações necessárias.
-4. Faça um commit com as alterações: `git commit -m "Descreva as alterações realizadas"`
-5. Faça um push para a branch: `git push origin nome-da-sua-branch`
-6. Crie um pull request.
+Siga esse passos: <br />
+1. Faça um fork deste repositório. <br />
+2. Crie uma nova branch: `git checkout -b nome-da-sua-branch` <br />
+3. Faça as alterações necessárias. <br />
+4. Faça um commit com as alterações: `git commit -m "Descreva as alterações realizadas"` <br />
+5. Faça um push para a branch: `git push origin nome-da-sua-branch` <br />
+6. Crie um pull request. <br />
 
-<h3>Autoria</h3>
-Autores desse projeto
+<h3>Autoria</h3> <br />
+Autores desse projeto <br />
 . Jéssica Venâncio <br />
 . Jurineide de Souza <br />
 . Vitor Santana <br />
