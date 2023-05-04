@@ -5,8 +5,9 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ImgProdutoform from "../../assets/soul-pet-logo.svg";
 import "./AddProd.css";
+import Img from "../../assets/soul-pet-logo.svg";
+
 
 export function AddProduto() {
     const {
@@ -38,11 +39,12 @@ export function AddProduto() {
     return (
         <div className="container-form">
             <Row>
-                <Col xs={5}>
-                    <img className="img-form" src={ImgProdutoform} alt="LOGO" />
+            <Col xs={5} className="mt-30">
+                    <img className="img-form col-md-10 " src={Img} alt="LOGO" />
                 </Col>
+
                 <Col>
-                    <h1>Adicionar Novo Produto</h1>
+                    <h1>Novo Produto</h1>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <Form.Group className="mb-3">
                             <Form.Label>Nome</Form.Label>
@@ -149,9 +151,11 @@ export function AddProduto() {
                             )}
                         </Form.Group>
 
-                        <Button variant="success" className="botao-form" type="submit">
-                            Cadastrar
-                        </Button>
+                        <div className="d-flex justify-content-end">
+                            <Button variant="primary" type="submit" className="ml-auto">
+                                Cadastrar
+                            </Button>
+                        </div>
                     </Form>
                 </Col>
             </Row>

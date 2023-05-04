@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button,Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import Img from "../../assets/soul-pet-logo.svg";
 
 export function Agendamentos() {
     const [agendamentos, setAgendamentos] = useState(null); 
@@ -23,15 +24,18 @@ export function Agendamentos() {
 
     return (
         <div className="agendamentos container">
-            <div className="d-flex justify-content-around align-items-center mb-5 mt-5">
+            <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
+            <div className="d-flex justify-content-between align-items-center m-0 p-0">
                 <h1>Agendamentos</h1>                
-                    <Button as={Link} to="/agendamentos/novo" variant="secondary">
+                    <Button as={Link} to="/agendamentos/novo" variant="primary">
                         Novo agendamento
                     </Button>            
             </div>
             {
                 agendamentos === null ?
-                    <Loader />
+                    <Loader/>
                     :
                     <Table striped hover >
                         <thead>
