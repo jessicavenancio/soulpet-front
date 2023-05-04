@@ -136,7 +136,7 @@ export function Servicos() {
                     Tem certeza que deseja excluir este serviço?
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <Button variant="warning" onClick={handleClose}>
                         Cancelar
                     </Button>
                     <Button

@@ -158,7 +158,7 @@ export function Produtos() {
                 </Modal.Header>
                 <Modal.Body>Tem certeza que deseja excluir o produto?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
+                    <Button variant="warning" onClick={handleClose}>
                         Cancelar
                     </Button>
                     <Button variant="primary" onClick={onDelete}>
