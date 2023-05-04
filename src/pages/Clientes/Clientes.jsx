@@ -88,8 +88,8 @@ export function Clientes() {
             </div>
 
             <div className="d-flex justify-content-between align-items-center">
-                <h1>Clientes</h1>
-                <div>
+                <h1>Clientes</h1> 
+                <div> 
                     <Button as={Link} to="/clientes/novo" className="m-2">
                         <i className="bi bi-plus-lg"></i> Cliente
                     </Button>
@@ -99,6 +99,7 @@ export function Clientes() {
                     </Button>
                 </div>
             </div>
+            <hr/>
             {
                 clientes === null ?
                     <Loader />

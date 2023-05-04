@@ -117,6 +117,7 @@ export function Pedidos() {
                     <i className="bi bi-plus-lg me-2"></i> Pedido
                 </Button>
             </div> 
+            <hr/>
             <div className="mb-3">
             <Row>
                 <Col>

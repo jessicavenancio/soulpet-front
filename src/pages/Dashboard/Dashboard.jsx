@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios";
 import "./Dashboard.css"
+import Img from "../../assets/soul-pet-logo.svg";
+
 
 export function Dashboard() {
   const [dashboardData, setDashboardData] = useState(null);
@@ -20,6 +22,9 @@ export function Dashboard() {
 
   return (
     <Container>
+      <div className="container-img">
+                <img className="img-bg col-md-10 " src={Img} alt="LOGO" />
+            </div>
       <h1 className="titulo">Análise de controle</h1><hr/>
       <div className="d-flex justify-content-around">
       <Row>

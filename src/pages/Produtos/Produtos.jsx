@@ -65,7 +65,9 @@ export function Produtos() {
                     <i className="bi bi-plus-lg me-2"></i> Produto
                 </Button>
             </div>
+
             <div>
+            <hr/>
                 <Row>
                     <Col>
                         <div className="input-group mb-3">
@@ -82,6 +84,7 @@ export function Produtos() {
                                 </span>
                             </div>
                         </div>
+                        
                     </Col>
                     <Col>
                         <div className="input-group mb-3">
@@ -101,7 +104,7 @@ export function Produtos() {
                     </Col>
                 </Row>
             </div>
-
+            
             {
                 produtos === null ?
                     <Loader />

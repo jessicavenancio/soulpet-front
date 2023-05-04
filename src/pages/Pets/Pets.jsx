@@ -63,6 +63,7 @@ export function Pets() {
 
                 </div>
             </div>
+            <hr/>
             {
                 pets === null ?
                     <Loader />

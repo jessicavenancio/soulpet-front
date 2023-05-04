@@ -65,6 +65,7 @@ export function Servicos() {
                     <i className="bi bi-plus-lg me-2"></i>Serviço
                 </Button>
             </div>
+            <hr/>
             <div className="input-group mb-3">
                 <input
                     className="form-control"

@@ -33,6 +33,7 @@ export function Agendamentos() {
                         Novo agendamento
                     </Button>            
             </div>
+            <hr/>
             {
                 agendamentos === null ?
                     <Loader/>
