@@ -106,10 +106,10 @@ export function Pets() {
                 </Modal.Header>
                 <Modal.Body>Tem certeza que deseja excluir o pet?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="warning" onClick={handleClose}>
                         Cancelar
                     </Button>
-                    <Button variant="primary" onClick={onDelete}>
+                    <Button variant="warning" onClick={onDelete}>
                         Excluir
                     </Button>
                 </Modal.Footer>
