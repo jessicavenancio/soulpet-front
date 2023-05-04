@@ -18,6 +18,7 @@ import { Servicos } from "./pages/Servicos/Servicos";
 import { EditaServico } from "./pages/EditaServico/EditaServico";
 import { Agendamentos } from "./pages/Agendamentos/Agendamentos";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { EditaPedido } from "./pages/EditaPedido/EditaPedido";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
 
           <Route path="/pedidos/" element={<Pedidos />} />          
           <Route path="/pedidos/novo" element={<NovoPedido />} />
+          <Route path = "/pedidos/editar/:id" element= { <EditaPedido />} />
 
           <Route path="/produtos" element={<Produtos />} />
           <Route path="/produtos/novo" element={<AddProduto />} />
